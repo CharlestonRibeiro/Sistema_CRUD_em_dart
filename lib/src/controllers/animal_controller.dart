@@ -54,4 +54,13 @@ class AnimalController {
     }
   }
 
+  postController({required AnimalModel model}) async {
+    try {  
+      await animalRepository.postAnimal(data: model.toMap());
+      return 'Animal inserido com sucesso!';
+    } catch (e) {
+      return 'Erro na chamada';
+    }
+  }
+
 }
