@@ -51,7 +51,10 @@ class DioClient implements IRestClient {
   Future putData(
       {required String url, required Map<String, dynamic> data}) async {
     try {
-      await _dio.put(url, data: data);
+      await _dio.put( 
+        url, 
+        data: data)
+        ;
       log('put OK');
     } on DioException catch (e) {
       throw CustomException(errorMessage: e.message);

@@ -28,8 +28,9 @@ class AnimalRepositoryImpl implements AnimalRepository {
   }
 
   @override
-  Future putAnimal({required Map<String, dynamic> data}) async {
-    await dioClient.putData(url: url, data: data);
+  Future putAnimal({ required int id, required Map<String, dynamic> data}) async {
+    final urlId = '$url/$id';  
+    await dioClient.putData(url: urlId, data: data);
   }
 
   @override

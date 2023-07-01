@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class AnimalModel {
-  final int id;
+  final int? id;
   final String name;
   final num age;
   final String species;
