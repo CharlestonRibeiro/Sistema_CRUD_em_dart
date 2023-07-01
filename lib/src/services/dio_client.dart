@@ -36,25 +36,36 @@ class DioClient implements IRestClient {
       throw CustomException(errorMessage: e.message);
     }
   }
-  
+
   @override
   Future deleteData({required String url}) async {
-       try {
+    try {
       await _dio.delete(url);
       log('delete OK');
     } on DioException catch (e) {
       throw CustomException(errorMessage: e.message);
     }
   }
-  
+
   @override
-  Future putData({required String url, required Map<String, dynamic> data}) async {
+  Future putData(
+      {required String url, required Map<String, dynamic> data}) async {
     try {
-      await _dio.put(
-        url,
-        data: data
-        );
+      await _dio.put(url, data: data);
       log('put OK');
+    } on DioException catch (e) {
+      throw CustomException(errorMessage: e.message);
+    }
+  }
+
+  @override
+  Future getByIdData({required String url}) async {
+    try {
+      final response = await _dio.get(
+        url,
+      );
+      log('delete OK');
+      return response.data;
     } on DioException catch (e) {
       throw CustomException(errorMessage: e.message);
     }

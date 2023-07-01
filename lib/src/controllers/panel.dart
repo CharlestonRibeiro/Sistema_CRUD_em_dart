@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:animal_cli/src/controllers/animal_controller.dart';
-import 'package:animal_cli/src/models/animal_model.dart';
 
 class Panel {
   final animalController = AnimalController();
@@ -33,9 +32,39 @@ class Panel {
         case 0:
         case 1:
         case 2:
+          print('Digite o identificador do animal.');
+
+          int id;
+          try {
+            id = int.parse(stdin.readLineSync()!);
+            final listAnimal = await 
+            animalController.getIdAllController();
+            if (listAnimal.contains(id)) {
+              final animal = await animalController.getByIdController(id: id);
+              print(animal);
+            } else {
+              print('Identificador invalido');
+            }
+          } catch (e) {
+            print('Digite um numero!');
+          }
+
+          break;
+
         case 3:
           final listAnimal = await animalController.getAllController();
-          print(listAnimal);
+
+          if (listAnimal.isEmpty) {
+            print('Não existe dados cadastrados');
+          } else if (listAnimal == 'Erro na chamada') {
+            print(listAnimal);
+          } else {
+            for (var e in listAnimal) {
+              print(
+                  'Nome: ${e.name}, Idade: ${e.age}, Espécie: ${e.species}, Identificador: ${e.id}');
+            }
+          }
+
           break;
         case 4:
         case 5:

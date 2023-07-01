@@ -8,7 +8,7 @@ class AnimalRepositoryImpl implements AnimalRepository {
   final url = 'http://192.168.2.25:8081/animal';
 
   @override
-  Future deleteAimal({required num id}) async {
+  Future deleteAnimal({required num id}) async {
     await dioClient.deleteData(url: url + id.toString());
   }
 
@@ -29,5 +29,13 @@ class AnimalRepositoryImpl implements AnimalRepository {
   @override
   Future putAnimal({required Map<String, dynamic> data}) async {
     await dioClient.putData(url: url, data: data);
+  }
+
+  @override
+  Future getById({required int id}) async {
+    final urlId = '$url/$id'; 
+    final json = await dioClient.getByIdData(url: urlId);
+    AnimalModel animals = AnimalModel.fromMap(json as Map<String, dynamic>);
+    return animals;
   }
 }
