@@ -9,7 +9,8 @@ class AnimalRepositoryImpl implements AnimalRepository {
 
   @override
   Future deleteAnimal({required num id}) async {
-    await dioClient.deleteData(url: url + id.toString());
+    final urlId = '$url/$id'; 
+    await dioClient.deleteData(url: urlId);
   }
 
   @override

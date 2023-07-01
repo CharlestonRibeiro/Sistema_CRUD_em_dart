@@ -44,4 +44,14 @@ class AnimalController {
       return 'Erro na chamada';
     }
   }
+
+  deleteController({required int id}) async {
+    try {  
+      await animalRepository.deleteAnimal(id: id);
+      return 'Animal deletado com sucesso!';
+    } catch (e) {
+      return 'Erro na chamada';
+    }
+  }
+
 }

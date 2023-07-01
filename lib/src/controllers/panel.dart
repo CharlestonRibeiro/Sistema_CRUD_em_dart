@@ -34,11 +34,9 @@ class Panel {
         case 2:
           print('Digite o identificador do animal.');
 
-          int id;
           try {
-            id = int.parse(stdin.readLineSync()!);
-            final listAnimal = await 
-            animalController.getIdAllController();
+            final id = int.parse(stdin.readLineSync()!);
+            final listAnimal = await animalController.getIdAllController();
             if (listAnimal.contains(id)) {
               final animal = await animalController.getByIdController(id: id);
               print(animal);
@@ -67,6 +65,22 @@ class Panel {
 
           break;
         case 4:
+          print('Digite o identificador do animal para deletado.');
+
+          try {
+            final id = int.parse(stdin.readLineSync()!);
+            final listAnimal = await animalController.getIdAllController();
+            if (listAnimal.contains(id)) {
+              final result = await animalController.deleteController(id: id);
+              print(result);
+            } else {
+              print('Identificador invalido');
+            }
+          } catch (e) {
+            print('Digite um numero!');
+          }
+
+          break;
         case 5:
 
         default:
